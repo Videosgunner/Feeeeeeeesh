@@ -55,10 +55,10 @@ function draw() {
   switch (mode) {
     case 2:
       if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
-        document.getElementById("contentP").innerHTML = "Position: (" + mouseX + ", " + floor(mouseY) + ")<br>Time Elapsed: " + str(Date.now()-start);
+        document.getElementById("contentP").innerHTML = "Position: (" + mouseX + ", " + floor(mouseY) + ")<br>Time Elapsed: " + str(floor((Date.now()-start)/10)/100);
         
       } else {
-        document.getElementById("contentP").innerHTML = "Position: NA<br>Time Elapsed: " + str(Date.now()-start);
+        document.getElementById("contentP").innerHTML = "Position: NA<br>Time Elapsed: " + str(floor((Date.now()-start)/10)/100);
       }
       break
     case 847:
