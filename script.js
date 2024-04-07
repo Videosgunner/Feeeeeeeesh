@@ -54,6 +54,13 @@ function draw() {
   }
   
   switch (mode) {
+    case 0:
+      if (target == 0) {
+        document.getElementById("contentP").innerHTML = "No Fish Selected."
+      } else {
+        document.getElementById("contentP").innerHTML = "Size: " + target.size + "<br>Speed: " + target.speed + "<br>Color: " + target.color;
+      }
+      break
     case 2:
       if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
         document.getElementById("contentP").innerHTML = "Position: (" + mouseX + ", " + floor(mouseY) + ")<br>Time Elapsed: " + str(floor((Date.now()-start)/10)/100);
