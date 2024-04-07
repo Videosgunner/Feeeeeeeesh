@@ -1,5 +1,6 @@
 var target = 0;
 var mode = null;
+const start = Date.now();
 
 fishlist = []
 
@@ -54,10 +55,10 @@ function draw() {
   switch (mode) {
     case 2:
       if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
-        document.getElementById("contentP").innerHTML = "Position: (" + mouseX + ", " + floor(mouseY) + ")";
+        document.getElementById("contentP").innerHTML = "Position: (" + mouseX + ", " + floor(mouseY) + ")<br>Time Elapsed: " + str(Date.now()-start);
         
       } else {
-        document.getElementById("contentP").innerHTML = "Position: NA";
+        document.getElementById("contentP").innerHTML = "Position: NA<br>Time Elapsed: " + str(Date.now()-start);
       }
       break
     case 847:
