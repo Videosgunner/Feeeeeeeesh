@@ -18,6 +18,7 @@ function setup() {
 }
 
 function draw() {
+  resizeCanvas(windowWidth - 220, windowHeight);
   background(60+(cos(frameCount/200)*2), 70, 70);
   for (var eachfish of fishlist) {
     eachfish.drawSelf();
