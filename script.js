@@ -31,11 +31,8 @@ function draw() {
     if (fish.x - ((fish.size * fish.speed / 5) / 2) < mouseX && fish.x + ((fish.size * fish.speed / 5) / 2) > mouseX && fish.y - fish.size / 2 < mouseY && fish.y + fish.size / 2 > mouseY) {
       fish.saturation = 50;
       if (fish.name != null) {
-        push();
-        fill(0,0,100);
         textAlign(LEFT,BOTTOM)
         text(fish.name,mouseX,mouseY)
-        pop();
       }
     } else {
       fish.saturation = 100;
@@ -70,10 +67,10 @@ function draw() {
       break
     case 2:
       if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
-        document.getElementById("contentP").innerHTML = "Position: (" + mouseX + ", " + floor(mouseY) + ")<br>Time: " + str(floor((Date.now()-start)/10)/100);
+        document.getElementById("contentP").innerHTML = "Position: (" + mouseX + ", " + floor(mouseY) + ")<br>Time Elapsed: " + str(floor((Date.now()-start)/10)/100);
         
       } else {
-        document.getElementById("contentP").innerHTML = "Position: NA<br>Time: " + str(floor((Date.now()-start)/10)/100);
+        document.getElementById("contentP").innerHTML = "Position: NA<br>Time Elapsed: " + str(floor((Date.now()-start)/10)/100);
       }
       break
     case 847:
@@ -81,6 +78,9 @@ function draw() {
       break
     default:
       document.getElementById("contentP").innerHTML = "";
+      while (document.getElementById("contentButtons").hasChildNodes() == true) {
+        document.getElementById("contentButtons").removeChild(document.getElementById("contentButtons").firstChild);
+      }
   }
 
 }
@@ -102,6 +102,7 @@ function mouseReleased() {
   target = 0;
 
 }
+
 
 function keyPressed() {
   switch(keyCode) {
