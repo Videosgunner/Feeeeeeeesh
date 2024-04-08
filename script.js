@@ -75,12 +75,14 @@ function draw() {
       
       while (document.getElementById("contentButtons").hasChildNodes() == true) {
         document.getElementById("contentButtons").removeChild(document.getElementById("contentButtons").firstChild);
+      }
       break
     case 847:
       document.getElementById("contentP").innerHTML = "Fish with SPICE.";
       
       while (document.getElementById("contentButtons").hasChildNodes() == true) {
         document.getElementById("contentButtons").removeChild(document.getElementById("contentButtons").firstChild);
+      }
       break
     default:
       document.getElementById("contentP").innerHTML = "";
