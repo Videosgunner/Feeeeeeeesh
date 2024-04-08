@@ -16,7 +16,7 @@ class Fish  {
     this.offset = floor(random(0, this.stamina-1));
     this.noMove = false;
 
-    this.name = null;
+    this.name = "";
   }
 
   drawSelf() {
