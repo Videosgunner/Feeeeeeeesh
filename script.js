@@ -72,9 +72,15 @@ function draw() {
       } else {
         document.getElementById("contentP").innerHTML = "Position: NA<br>Time Elapsed: " + str(floor((Date.now()-start)/10)/100);
       }
+      
+      while (document.getElementById("contentButtons").hasChildNodes() == true) {
+        document.getElementById("contentButtons").removeChild(document.getElementById("contentButtons").firstChild);
       break
     case 847:
       document.getElementById("contentP").innerHTML = "Fish with SPICE.";
+      
+      while (document.getElementById("contentButtons").hasChildNodes() == true) {
+        document.getElementById("contentButtons").removeChild(document.getElementById("contentButtons").firstChild);
       break
     default:
       document.getElementById("contentP").innerHTML = "";
