@@ -95,3 +95,13 @@ function mouseReleased() {
   target = 0;
 
 }
+
+function keyPressed() {
+  switch(keyCode) {
+    case 78:
+      nameF = document.getElementById("namefield");
+      if (nameF.value != null) {
+      target.name = nameF.value;
+      }
+  }
+}
