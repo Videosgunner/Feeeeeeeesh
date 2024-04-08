@@ -15,6 +15,8 @@ class Fish  {
     this.saturation = 100;
     this.offset = floor(random(0, this.stamina-1));
     this.noMove = false;
+
+    this.name = null;
   }
 
   drawSelf() {
