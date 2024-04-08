@@ -31,8 +31,11 @@ function draw() {
     if (fish.x - ((fish.size * fish.speed / 5) / 2) < mouseX && fish.x + ((fish.size * fish.speed / 5) / 2) > mouseX && fish.y - fish.size / 2 < mouseY && fish.y + fish.size / 2 > mouseY) {
       fish.saturation = 50;
       if (fish.name != null) {
+        push();
+        fill(0,0,100);
         textAlign(LEFT,BOTTOM)
         text(fish.name,mouseX,mouseY)
+        pop();
       }
     } else {
       fish.saturation = 100;
