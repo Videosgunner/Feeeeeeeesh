@@ -1,9 +1,12 @@
 var target = 0;
 var mode = null;
-
+var cursorMode = "drag";
+var startX = null;
+var startY = null;
 const start = Date.now();
 
 fishlist = []
+walllist = []
 
 function setup() {
   var main = createCanvas(windowWidth - 220, windowHeight);
@@ -40,6 +43,10 @@ function draw() {
     }
   }
 
+  for (var wall of walllist) {
+    wall.drawSelf();
+  }
+
   if (target != 0) {
     target.noMove = true;
     target.x = mouseX;
@@ -53,7 +60,14 @@ function draw() {
     translate(mouseX, mouseY);
     noCursor();
     stroke(3);
-    fill(0, 0, 100);
+    switch (cursorMode) {
+      case "drag":
+        fill(0,0,100)
+        break
+      case "line":
+        fill(0,0,0)
+        break
+    }
     triangle(0,0,4,10,10,4);
     pop();
   }
@@ -93,10 +107,34 @@ function draw() {
 }
 
 function mouseDragged() {
-  for (var fish of fishlist) {
-    if (fish.x - ((fish.size * fish.speed / 5) / 2) < mouseX && fish.x + ((fish.size * fish.speed / 5) / 2) > mouseX && fish.y - fish.size / 2 < mouseY && fish.y + fish.size / 2 > mouseY && target === 0) {
-      target = fish;
-    }
+  switch (cursorMode) {
+    case "drag":
+      for (var fish of fishlist) {
+        if (fish.x - ((fish.size * fish.speed / 5) / 2) < mouseX && fish.x + ((fish.size * fish.speed / 5) / 2) > mouseX && fish.y - fish.size / 2 < mouseY && fish.y + fish.size / 2 > mouseY && target === 0) {
+          target = fish;
+        }
+      }
+      break
+    default:
+      break
+  }
+}
+
+function mousePressed() {
+  switch (cursorMode) {
+    case "line":
+      if (startX != null) {
+        var wall = new Wall(startX, startY, mouseX, mouseY);
+        walllist.push(wall);
+        startX = null;
+        startY = null;
+      } else {
+        startX = mouseX;
+        startY = mouseY;
+      }
+      break
+    default:
+      break
   }
 }
 
@@ -113,11 +151,21 @@ function mouseReleased() {
 
 function keyPressed() {
   switch(keyCode) {
+    case 49:
+      cursorMode = "drag";
+      break
+    case 50:
+      cursorMode = "line";
+      break
     case 78:
       nameF = document.getElementById("namefield");
       if (nameF.value != null) {
       target.name = nameF.value;
       }
       break
+    case 88:
+      if (cursorMode == "line") {
+        walllist = [];
+      }
   }
 }
