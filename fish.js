@@ -58,7 +58,7 @@ class Fish  {
     }
 
     for (var wall of walllist) {
-      if ((this.y+this.dy - (wall.a * (this.x + this.dx) + wall.b)) / (this.y - (wall.a * (this.x) + wall.b)) <= 0 && ((wall.x1 <= this.x && wall.x2 >= this.x) || (wall.x2 <= this.x && wall.x1 >= this.x) )) {
+      if (((this.y+this.dy - (wall.a * (this.x + this.dx) + wall.b)) / (this.y - (wall.a * (this.x) + wall.b)) <= 0 && ((wall.x1 <= this.x && wall.x2 >= this.x) || (wall.x2 <= this.x && wall.x1 >= this.x) )) || this.y + this.dy == (wall.a * this.x+this.dx) + wall.b) {
         var thisangle = atan2(this.dy, this.dx)
         var newAngle = 2 * atan2(wall.y2-wall.y1,wall.x2-wall.x1) - thisangle;
         var currentSpeed = sqrt(this.dx**2 + this.dy**2)
