@@ -92,11 +92,13 @@ class Wall {
 
     this.a = (y2 - y1) / (x2 - x1);
     this.b = y1 - this.a * x1;
+
+    this.color = random(0,360);
   }
 
   drawSelf() {
     push();
-    stroke(random(0,360),100,100);
+    stroke(this.color,100,100);
     strokeWeight(2)
     line(this.x1, this.y1, this.x2, this.y2)
     pop();
