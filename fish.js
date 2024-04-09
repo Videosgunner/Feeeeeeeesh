@@ -64,6 +64,7 @@ class Fish  {
         var currentSpeed = sqrt(this.dx**2 + this.dy**2)
         this.dy = sin(newAngle) * currentSpeed;
         this.dx = cos(newAngle) * currentSpeed;
+        break
       } 
     }
 
