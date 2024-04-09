@@ -65,7 +65,14 @@ class Fish  {
         this.dy = sin(newAngle) * currentSpeed;
         this.dx = cos(newAngle) * currentSpeed;
         break
-      } 
+      } else if (wall.x1 == wall.x2 && (this.x + this.dx - wall.x1) / (this.x - wall.x1) <=0) {
+        var thisangle = atan2(this.dy, this.dx)
+        var newAngle = PI - thisangle;
+        var currentSpeed = sqrt(this.dx**2 + this.dy**2)
+        this.dy = sin(newAngle) * currentSpeed;
+        this.dx = cos(newAngle) * currentSpeed;
+        break
+      }
     }
 
     this.x += this.dx;
@@ -89,7 +96,7 @@ class Wall {
 
   drawSelf() {
     push();
-    stroke(0,0,0);
+    stroke(random(0,360),100,100);
     strokeWeight(2)
     line(this.x1, this.y1, this.x2, this.y2)
     pop();
