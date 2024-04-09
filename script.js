@@ -1,5 +1,6 @@
 var target = 0;
 var mode = null;
+
 const start = Date.now();
 
 fishlist = []
@@ -30,8 +31,10 @@ function draw() {
   for (var fish of fishlist) {
     if (fish.x - ((fish.size * fish.speed / 5) / 2) < mouseX && fish.x + ((fish.size * fish.speed / 5) / 2) > mouseX && fish.y - fish.size / 2 < mouseY && fish.y + fish.size / 2 > mouseY) {
       fish.saturation = 50;
-      textAlign(LEFT,BOTTOM)
-      text(fish.name,mouseX,mouseY)
+      if (fish.name != null) {
+        textAlign(LEFT,BOTTOM)
+        text(fish.name,mouseX,mouseY)
+      }
     } else {
       fish.saturation = 100;
     }
@@ -60,7 +63,7 @@ function draw() {
       if (target == 0) {
         document.getElementById("contentP").innerHTML = "No Fish Selected."
       } else {
-        document.getElementById("contentP").innerHTML = "Size: " + target.size + "<br>Speed: " + target.speed + "<br>Color: " + target.color;
+        document.getElementById("contentP").innerHTML = "Size: " + target.size + "<br>Speed: " + target.speed + "<br>Color: " + target.color + "<br><br>Position: (" + target.x + ", " + target.y + ")" + "<br>Facing: " + atan2(target.dy, target.dx) * (180 / PI);
       }
       break
     case 2:
@@ -115,5 +118,6 @@ function keyPressed() {
       if (nameF.value != null) {
       target.name = nameF.value;
       }
+      break
   }
 }
