@@ -7,6 +7,7 @@ const start = Date.now();
 
 fishlist = []
 walllist = []
+circlelist = []
 
 function setup() {
   var main = createCanvas(windowWidth - 220, windowHeight);
@@ -47,13 +48,17 @@ function draw() {
     wall.drawSelf();
   }
 
+  for (var circle of circlelist) {
+    circle.drawSelf();  
+  }
+  
   if (target != 0) {
     target.noMove = true;
     target.x = mouseX;
     target.y = mouseY;
   }
 
-  
+
 
   if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
     push();
@@ -67,11 +72,28 @@ function draw() {
       case "line":
         fill(0,0,0)
         break
+      case "circle":
+        fill(0,0,50)
+        break
     }
     triangle(0,0,4,10,10,4);
     pop();
   }
-  
+
+  if (mouseIsPressed) {
+    for (var fish of fishlist) {
+      text(fish.name,fish.x,fish.y)
+    }
+
+    if (startX != null && startY != null) {
+      push();
+      stroke(0,100,100);
+      strokeWeight(4);
+      point(startX,startY);
+      pop();
+    }
+  }
+
   switch (mode) {
     case 0:
       if (target == 0) {
@@ -83,7 +105,7 @@ function draw() {
     case 2:
       if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
         document.getElementById("contentP").innerHTML = "Position: (" + mouseX + ", " + floor(mouseY) + ")<br>Time Elapsed: " + str(floor((Date.now()-start)/10)/100);
-        
+
       } else {
         document.getElementById("contentP").innerHTML = "Position: NA<br>Time Elapsed: " + str(floor((Date.now()-start)/10)/100);
       }
@@ -123,14 +145,29 @@ function mouseDragged() {
 function mousePressed() {
   switch (cursorMode) {
     case "line":
-      if (startX != null) {
+      if (startX != null && mouseX >= 0) {
         var wall = new Wall(startX, startY, mouseX, mouseY);
         walllist.push(wall);
         startX = null;
         startY = null;
       } else {
+        if (mouseX >= 0) {
         startX = mouseX;
         startY = mouseY;
+        }
+      }
+      break
+    case "circle":
+      if (startX != null && mouseX >= 0) {
+        var circle = new Circle(startX, startY, sqrt((startX - mouseX)**2 + (startY - mouseY)**2));
+        circlelist.push(circle);
+        startX = null;
+        startY = null;
+      } else {
+        if (mouseX >= 0) {
+        startX = mouseX;
+        startY = mouseY;
+        }
       }
       break
     default:
@@ -157,6 +194,9 @@ function keyPressed() {
     case 50:
       cursorMode = "line";
       break
+    case 51:
+      cursorMode = "circle";
+      break
     case 78:
       nameF = document.getElementById("namefield");
       if (nameF.value != null) {
@@ -164,8 +204,9 @@ function keyPressed() {
       }
       break
     case 88:
-      if (cursorMode == "line") {
+      if (cursorMode != "drag") {
         walllist = [];
+        circlelist = [];
       }
   }
 }
