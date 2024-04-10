@@ -16,7 +16,7 @@ class Fish  {
     this.offset = floor(random(0, this.stamina-1));
     this.noMove = false;
 
-    this.name = null;
+    this.name = "";
   }
 
   drawSelf() {
@@ -52,8 +52,11 @@ class Fish  {
       this.dy = sin(vel_angle) * this.speed;
     }
 
-    if (this.x + this.dx < 0 || this.x + this.dx > width || this.y + this.dy < 0 || this.y + this.dy > height) {
+    if (this.x + this.dx < 0 || this.x + this.dx > width) {
       this.dx *= -1
+    }
+
+    if (this.y + this.dy < 0 || this.y + this.dy > height) {
       this.dy *= -1
     }
 
@@ -75,9 +78,20 @@ class Fish  {
       }
     }
 
+    for (var circle of circlelist) {
+      if ((dist(this.x + this.dx, this.y + this.dy, circle.x, circle.y) - circle.r) / (dist(this.x,this.y,circle.x,circle.y)-circle.r) <= 0) {
+        var thisangle = atan2(this.dy, this.dx)
+        var newAngle = 2 * atan2(circle.y-this.y,circle.x-this.x) - thisangle - PI;
+        var currentSpeed = sqrt(this.dx**2 + this.dy**2)
+        this.dy = sin(newAngle) * currentSpeed;
+        this.dx = cos(newAngle) * currentSpeed;
+        break
+      }
+    }
+
     this.x += this.dx;
     this.y += this.dy;
-    
+
     this.dx *= this.waterFriction;
     this.dy *= this.waterFriction;
   }
@@ -102,6 +116,23 @@ class Wall {
     stroke(this.color,100,100);
     strokeWeight(2)
     line(this.x1, this.y1, this.x2, this.y2)
+    pop();
+  }
+}
+
+class Circle {
+  constructor(x,y,r) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+  }
+
+  drawSelf() {
+    push();
+    noFill();
+    strokeWeight(2);
+    stroke(0,0,0);
+    ellipse(this.x, this.y, this.r * 2, this.r * 2);
     pop();
   }
 }
