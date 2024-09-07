@@ -97,9 +97,10 @@ function draw() {
           break
         case "circle":
           push();
+          noFill();
           stroke(0,0,50);
           strokeWeight(1);
-          ellipse(startX,startY,dist(startX,startY,mouseX,mouseY));
+          ellipse(startX,startY,2*dist(startX,startY,mouseX,mouseY));
           pop();
           break
       }
