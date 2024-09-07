@@ -90,7 +90,7 @@ function draw() {
           break
         case "line":
           push();
-          stroke(0,0,50);
+          stroke(0,0,0,50);
           strokeWeight(1);
           line(startX,startY,mouseX,mouseY);
           pop();
@@ -98,7 +98,7 @@ function draw() {
         case "circle":
           push();
           noFill();
-          stroke(0,0,50);
+          stroke(0,0,0,50);
           strokeWeight(1);
           ellipse(startX,startY,2*dist(startX,startY,mouseX,mouseY));
           pop();
