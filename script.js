@@ -78,12 +78,6 @@ function draw() {
     }
     triangle(0,0,4,10,10,4);
     pop();
-  }
-
-  if (mouseIsPressed) {
-    for (var fish of fishlist) {
-      text(fish.name,fish.x,fish.y)
-    }
 
     if (startX != null && startY != null) {
       push();
@@ -91,6 +85,30 @@ function draw() {
       strokeWeight(4);
       point(startX,startY);
       pop();
+      switch (cursorMode) {
+        case "drag":
+          break
+        case "line":
+          push();
+          stroke(0,0,50);
+          strokeWeight(1);
+          line(startX,startY,mouseX,mouseY);
+          pop();
+          break
+        case "circle":
+          push();
+          stroke(0,0,50);
+          strokeWeight(1);
+          ellipse(startX,startY,dist(startX,startY,mouseX,mouseY));
+          pop();
+          break
+      }
+    }
+  }
+
+  if (mouseIsPressed) {
+    for (var fish of fishlist) {
+      text(fish.name,fish.x,fish.y)
     }
   }
 
