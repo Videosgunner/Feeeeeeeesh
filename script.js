@@ -133,7 +133,7 @@ function draw() {
       }
       break
     case 847:
-      document.getElementById("contentP").innerHTML = "Fish with SPICE.<br>Click <a href='https://github.com/Videosgunner/Feeeeeeeesh/blob/main/README.md'>here</a> for how to use this thing.";
+      document.getElementById("contentP").innerHTML = "Fish with SPICE.<br>Open <a href='https://github.com/Videosgunner/Feeeeeeeesh/blob/main/README.md'>this link</a> to find out how to use this thing.";
       while (document.getElementById("contentButtons").hasChildNodes() == true) {
         document.getElementById("contentButtons").removeChild(document.getElementById("contentButtons").firstChild);
       }
