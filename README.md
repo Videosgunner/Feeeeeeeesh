@@ -14,11 +14,11 @@ Left Click: View all named fish
 
 Line Mode:
 Left Click: Place a point. If a point is already placed, this will draw a line, which the fish can collide with, between your mouse and the other point.
-X: Remove all collision objects
+X: Remove all collision objects (Lines, Circles)
 
 Circle Mode:
 Left Click: Place a point. If a point is already placed, this will draw a circle with a center at the first point and a radius of the distance between your mouse and said point.
-X: Remove all collision objects
+X: Remove all collision objects (Lines, Circles)
 ~~~
 
 No rights reserved. I didn't even make the fish models or swimming code!
